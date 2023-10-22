@@ -60,6 +60,7 @@
 :- op(1000, fx, rec).
 :- op(1000, fx, u).
 :- op(1000, fx, des).
+:- op(1000, fx, a).
 
 % quelques raccourcis
 n :- aller(nord).
@@ -72,6 +73,7 @@ ram(X) :- ramasser(X).
 rec(X) :- recharger(X).
 u(X) :- utiliser(X).
 des(X) :- desactiver(X).
+a(X) :- appuyer(X).
 
 % Position du joueur. Ce prédicat sera modifié au fur et à mesure de la partie (avec `retract` et `assert`)
 position_courante((1,1)).
@@ -1049,20 +1051,21 @@ instructions :-
         write("jouer.                   -- pour commencer une partie."), nl,
         write("fin.                     -- pour terminer la partie et quitter."), nl,
         write("instructions.            -- pour revoir ce message !."), nl,
-        write("status.                  -- pour visualiser l'inventaire et les points de vie."), nl,
-        write("regarder.                -- pour revoir ce qui est présent dans la pièce."), nl,
+        write("status. st.              -- pour visualiser l'inventaire et les points de vie."), nl,
+        write("regarder. reg.           -- pour revoir ce qui est présent dans la pièce."), nl,
         write("carte.                   -- pour revoir la carte actuelle."), nl,
-        write("desactiver.              -- pour désactiver un objet actif afin de pouvoir le ramasser."), nl,
+        write("desactiver. des.         -- pour désactiver un objet actif afin de pouvoir le ramasser."), nl,
         nl,
         write("Les commandes demandant un point d'action sont :"), nl,
-        write("appuyer(numérobouton)    -- pour appuyer sur un bouton"), nl,
-        write("ramasser(objet).         -- pour ramasser un objet."), nl,
-        write("recharger(objet).        -- pour recharger un objet à battrie."), nl,
-        write("utiliser(objet).         -- pour utiliser un objet."), nl,
-        write("detoner(position).       -- pour faire détoner une bombe."), nl,
-        write("aller(direction)         -- pour aller dans cette direction."), nl,
-        write("n.  s.  e.  o.           -- pour aller dans cette direction (nord / sud / est / ouest)."), nl,
+        write("appuyer numérobouton. a. -- pour appuyer sur un bouton"), nl,
+        write("ramasser objet. ram.     -- pour ramasser un objet."), nl,
+        write("recharger objet. rec.    -- pour recharger un objet à battrie."), nl,
+        write("utiliser objet. u.       -- pour utiliser un objet."), nl,
+        write("detoner position*.        -- pour faire détoner une bombe."), nl,
+        write("aller direction.         -- pour aller dans cette direction."), nl,
+        write("n. s.  e.  o.            -- pour aller dans cette direction (nord / sud / est / ouest)."), nl,
         write("passer.                  -- pour mettre fin à votre tour."), nl,
+        write("* les positions doivent être écrit de la manière suivante '(X,Y)'")
         nl.
 
 introduction :-
@@ -1158,7 +1161,8 @@ decrire_objet(batterie) :-
         write("La batterie, un consommable indispensable, elle permet de recharger les objet nécéssitant de l'énergie comme le radar."), nl.
 
 decrire_objet(bombe) :-
-        write("La bombe, un explposif minier, dangereux et puissant, le soufle de l'explosion affectera toute la salle soyez prudent lors de l'utlisation."), nl.
+        write("La bombe, un explposif minier, dangereux et puissant, le soufle de l'explosion affectera toute la salle soyez prudent lors de l'utlisation."),nl,
+        write("Pour la faire exploser, il faut utiliser la commande 'detoner positionDeLaBombe.' attention à l'écritude de la position, pour plus de détails utiliser la commande 'instructions.'."), nl.
 
 decrire_objet(radar) :-
         write("Le radar est un outils très pratique, il permet de scanner les alentours afin de détecter les menaces."),nl,
