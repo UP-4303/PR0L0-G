@@ -1065,7 +1065,7 @@ instructions :-
         write("aller direction.         -- pour aller dans cette direction."), nl,
         write("n. s.  e.  o.            -- pour aller dans cette direction (nord / sud / est / ouest)."), nl,
         write("passer.                  -- pour mettre fin à votre tour."), nl,
-        write("* les positions doivent être écrit de la manière suivante '(X,Y)'")
+        write("* les positions doivent être écrit de la manière suivante '(X,Y)'"),
         nl.
 
 introduction :-
